@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Luckiest+Guy&display=swap");
+html {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+:root {
+  --clr-blue: hsla(220, 90%, 60%, 1);
+  --clr-bg: rgba(250, 252, 255, .5);
+  --clr-grey: #666899;
+  --gradient-blue: linear-gradient(
+    45deg,
+    hsla(220, 90%, 60%, 1) 5%,
+    hsla(170, 65%, 75%, 1) 100%
+  );
+  --gradient-yellow: linear-gradient(
+    45deg,
+    hsla(33, 100%, 53%, 1) 5%,
+    hsla(58, 100%, 68%, 1) 100%
+  );
+}
+
+body {
+  background: var(--clr-bg);
+  overflow: hidden;
+}
+
+.header {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  height: 100vh;
+  width: 100vw;
+  color: var(--clr-grey);
+}
+
+.header .wrapper {
+  margin-right: auto;
+}
+
+.header h1 {
+  font-size: 3.5rem;
+}
+
+.header .btn-primary {
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  color: #fff;
+  border: none;
+  border-radius: 10rem;
+  background: var(--clr-blue);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.board-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  height: 100vh;
+  width: 100vw;
+  padding: 1.2rem 1rem .2rem;
+  background: #fff;
+  z-index: 100;
+  opacity: 1;
+  -webkit-transform: translateX(-100vw);
+          transform: translateX(-100vw);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.board-wrapper.show {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.theme-switch-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.theme-switch-wrapper em {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+          transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.mark {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 5px;
+  font-size: 100px;
+  font-family: "Luckiest Guy", cursive;
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+.mark::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  height: 10%;
+  width: 100%;
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+  opacity: 0.75;
+}
+
+.mark.x, .mark.x::after {
+  background-image: var(--gradient-blue);
+}
+
+.mark.o, .mark.o::after {
+  background-image: var(--gradient-yellow);
+}
+/*# sourceMappingURL=styles.css.map */
