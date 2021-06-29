@@ -20,8 +20,39 @@
       </div>
     </header>
 
-    <main class="board-wrapper">
-      
+    <main class="board-container show">
+      <div class="close-button">X</div>
+
+      <div class="board-wrapper">
+        <div class="game-info">
+          <div class="info-1 active">
+            <h3 class="player">Player 1</h3>
+            <!-- <p class="score">3</p> -->
+          </div>
+          <div class="info-2 active">
+            <h3 class="player">Player 2</h3>
+            <!-- <p class="score">1</p> -->
+          </div>
+        </div>
+
+        <div class="board">
+          <div class="tile" data-index="0"><div class="mark o">O</div></div>
+          <div class="tile" data-index="1"><div class="mark x">X</div></div>
+          <div class="tile" data-index="2"><div class="mark x">X</div></div>
+          <div class="tile" data-index="3"><div class="mark x">X</div></div>
+          <div class="tile" data-index="4"><div class="mark x">X</div></div>
+          <div class="tile" data-index="5"><div class="mark x">X</div></div>
+          <div class="tile" data-index="6"><div class="mark x">X</div></div>
+          <div class="tile" data-index="7"><div class="mark x">X</div></div>
+          <div class="tile" data-index="8">
+            <div class="mark x">X</div>
+          </div>
+        </div>
+
+        <div class="restart-button">
+          <img src="images/restart.svg" alt="" />
+        </div>
+      </div>
     </main>
 
     <!-- Scripts -->

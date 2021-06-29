@@ -11,7 +11,7 @@
 
 :root {
   --clr-blue: hsla(220, 90%, 60%, 1);
-  --clr-bg: rgba(250, 252, 255, .5);
+  --clr-bg: rgba(250, 252, 255, 1);
   --clr-grey: #666899;
 
   --gradient-blue: linear-gradient(
@@ -27,9 +27,9 @@
   );
 }
 
-body{
-    background: var(--clr-bg);
-    overflow: hidden;
+body {
+  background: var(--clr-bg);
+  overflow: hidden;
 }
 
 .header {
@@ -46,6 +46,14 @@ body{
 
   h1 {
     font-size: 3.5rem;
+    color: transparent;
+    background-size: 100%;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    background-image: var(--gradient-yellow);
   }
 
   .btn-primary {
@@ -54,24 +62,38 @@ body{
     color: #fff;
     border: none;
     border-radius: 10rem;
-    background: var(--clr-blue);
+    background: var(--gradient-blue);
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 1px;
     cursor: pointer;
+    transition: all .3s;
+
+
+    &:hover {
+      background: linear-gradient(
+    45deg,
+    hsla(220, 90%, 60%, 1) 5%,
+    hsla(220, 90%, 60%, 5) 50%,
+    hsla(170, 65%, 75%, 1) 100%
+  );;
+    }
   }
 }
 
-.board-wrapper {
+.board-container {
   position: absolute;
   top: 0;
   left: 0;
   visibility: hidden;
   height: 100vh;
   width: 100vw;
-  padding: 1.2rem 1rem .2rem;
-  background: #fff;
+  padding: 1.2rem 1rem 0.2rem;
+  background: var(--clr-bg);
   z-index: 100;
+
+  display: grid;
+  place-items: center;
 
   opacity: 1;
   transform: translateX(-100vw);
@@ -82,6 +104,81 @@ body{
     visibility: visible;
     opacity: 1;
     transform: translateX(0);
+  }
+
+  .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem 0.7rem;
+
+    &:hover {
+      background: rgb(250, 102, 102);
+      color: #fff;
+    }
+  }
+
+  .game-info {
+    display: flex;
+    width: 360px;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    .info-1 {
+      color: #6bb2e8;
+      width: 50%;
+      padding-bottom: 0.5rem;
+
+      &.active {
+        border-bottom: 3px solid;
+      }
+    }
+
+    .info-2 {
+      color: #ffad26;
+      width: 50%;
+      padding-bottom: 0.5rem;
+
+      &.active {
+        border-bottom: 3px solid;
+      }
+    }
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    .tile {
+      height: 120px;
+      width: 120px;
+      line-height: 110px;
+
+      &:not(:nth-child(3n)) {
+        border-right: 3px solid #eee;
+      }
+
+      &:not(:nth-last-child(-n + 3)) {
+        border-bottom: 3px solid #eee;
+      }
+
+      &:hover {
+        background: rgba(130, 160, 200, 0.25);
+      }
+    }
+  }
+
+  .restart-button {
+    margin-top: 1rem;
+    text-align: center;
+    img {
+      height: 40px;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.1) rotate(45deg);
+      }
+    }
   }
 }
 
@@ -146,6 +243,7 @@ input:checked + .slider:before {
 .mark {
   position: relative;
   width: max-content;
+  margin: auto;
   padding: 5px;
   font-size: 100px;
   font-family: "Luckiest Guy", cursive;
@@ -160,12 +258,12 @@ input:checked + .slider:before {
   &::after {
     content: "";
     position: absolute;
-    bottom: 10px;
+    bottom: 25px;
     left: 0;
     height: 10%;
     width: 100%;
     filter: blur(10px);
-    opacity: 0.75;
+    opacity: 0.5;
   }
 
   &.x,
