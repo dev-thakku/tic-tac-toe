@@ -81,8 +81,8 @@ body {
   font-weight: 600;
   letter-spacing: 1px;
   cursor: pointer;
-  -webkit-transition: all .3s;
-  transition: all .3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .header .btn-primary:hover {
@@ -182,6 +182,16 @@ body {
 
 .board-container .board .tile:hover {
   background: rgba(130, 160, 200, 0.25);
+}
+
+@media screen and (max-height: 410px) {
+  .board-container .board .tile {
+    line-height: normal;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    padding-top: 10px;
+  }
 }
 
 .board-container .restart-button {
@@ -303,5 +313,12 @@ input:checked + .slider:before {
 
 .mark.o, .mark.o::after {
   background-image: var(--gradient-yellow);
+}
+
+@media screen and (max-height: 410px) {
+  .mark {
+    font-size: 8vw;
+    padding: 0;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

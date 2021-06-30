@@ -67,16 +67,15 @@ body {
     font-weight: 600;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all .3s;
-
+    transition: all 0.3s;
 
     &:hover {
       background: linear-gradient(
-    45deg,
-    hsla(220, 90%, 60%, 1) 5%,
-    hsla(220, 90%, 60%, 5) 50%,
-    hsla(170, 65%, 75%, 1) 100%
-  );;
+        45deg,
+        hsla(220, 90%, 60%, 1) 5%,
+        hsla(220, 90%, 60%, 5) 50%,
+        hsla(170, 65%, 75%, 1) 100%
+      );
     }
   }
 }
@@ -164,6 +163,12 @@ body {
 
       &:hover {
         background: rgba(130, 160, 200, 0.25);
+      }
+
+      @media screen and (max-height: 410px) {
+        line-height: normal;
+        height: max-content;
+        padding-top: 10px;
       }
     }
   }
@@ -274,5 +279,10 @@ input:checked + .slider:before {
   &.o,
   &.o::after {
     background-image: var(--gradient-yellow);
+  }
+
+  @media screen and (max-height: 410px) {
+    font-size: 8vw;
+    padding: 0;
   }
 }

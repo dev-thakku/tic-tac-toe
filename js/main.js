@@ -1,19 +1,34 @@
-let startButton = document.querySelector(".btn-primary");
-let closeButton = document.querySelector(".close-button");
-let board = document.querySelector(".board-container");
+import Game from "./Game.js";
+import GameView from "./GameView.js";
 
-const xTile = '<div class="mark x">X</div>';
-const oTile = '<div class="mark o">O</div>';
+const startButton = document.querySelector(".btn-primary");
+const closeButton = document.querySelector(".close-button");
+const restartButton = document.querySelector(".restart-button");
+const tiles = document.querySelectorAll(".tile");
+const board = document.querySelector(".board-container");
 
-startButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    board.classList.add("show");
-})
+let game = new Game();
+let gameView = new GameView();
 
-closeButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log(board);
-    board.classList.remove("show");
-})
+startButton.addEventListener("click", () => {
+  game = new Game();
+  gameView.updateBoard(game);
+  board.classList.add("show");
+});
 
-document.querySelector('.tile[data-index="1"]').innerHTML = oTile;
+closeButton.addEventListener("click", () => {
+  board.classList.remove("show");
+});
+
+restartButton.addEventListener("click", () => {
+  game = new Game();
+  gameView.updateBoard(game);
+});
+
+tiles.forEach((tile) => {
+  tile.addEventListener("click", () => {
+    console.log(tile.dataset.index);
+    game.makeMove(tile.dataset.index);
+    gameView.updateBoard(game);
+  });
+});
