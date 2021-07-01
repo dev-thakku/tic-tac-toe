@@ -260,6 +260,8 @@ input:checked + .slider:before {
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 
+      user-select: none;
+
   &::after {
     content: "";
     position: absolute;

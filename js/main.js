@@ -27,8 +27,14 @@ restartButton.addEventListener("click", () => {
 
 tiles.forEach((tile) => {
   tile.addEventListener("click", () => {
-    console.log(tile.dataset.index);
-    game.makeMove(tile.dataset.index);
-    gameView.updateBoard(game);
+    if (game.findWinningCombination()) {
+      console.log("winner>>", game.player);
+    } else handleTileClick(tile.dataset.index);
   });
 });
+
+const handleTileClick = (i) => {
+  console.log(i);
+  game.makeMove(i);
+  gameView.updateTail(game, i);
+};
