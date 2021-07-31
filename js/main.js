@@ -4,6 +4,7 @@ import GameView from "./GameView.js";
 const startButton = document.querySelector(".btn-primary");
 const closeButton = document.querySelector(".close-button");
 const restartButton = document.querySelector(".restart-button");
+const hidePopUp = document.querySelector(".hide-restart-button");
 const tiles = document.querySelectorAll(".tile");
 const board = document.querySelector(".board-container");
 
@@ -25,6 +26,12 @@ restartButton.addEventListener("click", () => {
   gameView.updateBoard(game);
 });
 
+hidePopUp.addEventListener("click", () => {
+  gameView.hidePopUp();
+  game = new Game();
+  gameView.updateBoard(game);
+});
+
 tiles.forEach((tile) => {
   tile.addEventListener("click", () => {
     if (game.findWinningCombination()) {
@@ -33,8 +40,12 @@ tiles.forEach((tile) => {
   });
 });
 
+
+
 const handleTileClick = (i) => {
   console.log(i);
   game.makeMove(i);
   gameView.updateTail(game, i);
+  game.findWinningCombination() && gameView.showWinner(game.player);
+  game.isTie() && gameView.showTie();
 };

@@ -1,7 +1,7 @@
 export default class Game {
   constructor() {
     this.player = "x";
-    this.board = new Array(9);
+    this.board = new Array(9).fill(null);
   }
 
   makeMove(i) {
@@ -16,6 +16,7 @@ export default class Game {
   }
 
   isEndofGame() {
+    if (this.isTie()) return true;
     const winningCombination = this.findWinningCombination();
     console.log(winningCombination);
     if (winningCombination) {
@@ -23,6 +24,10 @@ export default class Game {
       return true;
     }
     return false;
+  }
+
+  isTie() {
+    return !this.board.includes(null);
   }
 
   findWinningCombination() {

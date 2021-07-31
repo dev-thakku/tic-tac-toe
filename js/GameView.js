@@ -27,4 +27,30 @@ export default class GameView {
       document.querySelector(".info-2").classList.add("active");
     }
   }
+
+  showWinner(player) {
+    let popUp = document.querySelector(".pop-up");
+    let winnerDetails = document.querySelector(".winner-details");
+    let winner = player === "x" ? "player-1" : "player-2";
+
+    popUp.classList.add("show");
+
+    winnerDetails.innerHTML = `<h2 class="${winner}">Winner is ${
+      player === "x" ? "Player 1" : "Player 2"
+    }</h2>`;
+  }
+
+  showTie() {
+    document.querySelector(".pop-up").classList.add("show");
+    document.querySelector(
+      ".winner-details"
+    ).innerHTML = `<h2 class="tie">Tie!</h2>`;
+  }
+
+  hidePopUp() {
+    console.log("called");
+    document.querySelector(".pop-up").classList.contains("show")
+      ? document.querySelector(".pop-up").classList.remove("show")
+      : "";
+  }
 }
